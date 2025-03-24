@@ -15,12 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import intern.project.entity.Category;
 import intern.project.service.CategoryService;
 
-@Controller
+@RestController
 public class CategoryController {
     @Autowired
     CategoryService cateService;
-
-
     @PostMapping("saveCategory")
     public void saveCategory(@RequestBody Category category) {
         cateService.saveCategory(category);
