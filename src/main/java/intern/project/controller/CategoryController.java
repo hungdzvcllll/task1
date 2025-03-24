@@ -30,10 +30,6 @@ public class CategoryController {
     public ArrayList<Category> findAll() {
        return cateService.findAll();
     }
-    @PostMapping("rename_category_form")
-    public void renameForm(@RequestParam String name,@RequestParam int id){
-        cateService.upDateCategoryName(name, id);
-    }
     @GetMapping("findCategoryById")
     public Category findById(@RequestParam int id) {
         return cateService.findById(id);
