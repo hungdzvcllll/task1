@@ -3,6 +3,10 @@ package intern.project.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import intern.project.entity.Account;
 import intern.project.entity.Category;
 import intern.project.service.CategoryService;
 
@@ -19,6 +24,9 @@ import intern.project.service.CategoryService;
 public class CategoryController {
     @Autowired
     CategoryService cateService;
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
     @PostMapping("saveCategory")
     public void saveCategory(@RequestBody Category category) {
         cateService.saveCategory(category);
@@ -26,8 +34,9 @@ public class CategoryController {
 
     @GetMapping("list_category")
     public ArrayList<Category> findAll() {
-       return cateService.findAll();
+        return cateService.findAll();
     }
+
     @GetMapping("findCategoryById")
     public Category findById(@RequestParam int id) {
         return cateService.findById(id);

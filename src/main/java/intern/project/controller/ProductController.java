@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import intern.project.entity.Product;
-import intern.project.service.FilesStorageServiceImpl;
 import intern.project.service.ProductService;
 
 import java.util.ArrayList;
@@ -21,8 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ProductController {
     @Autowired
     ProductService proService;
-    @Autowired
-    FilesStorageServiceImpl fileService;
     @PostMapping("/save_product")
     public void saveProduct(@RequestBody Product product) {
         proService.saveProduct(product);
